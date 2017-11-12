@@ -15,8 +15,7 @@ def calc_mistakes(X_dat, y_dat, w):
     return np.sum(np.dot(X_dat, w) * y_dat <= 0)
 
 def train(X_train, y_train, w):
-    best_w = w
-    best_mistakes = calc_mistakes(X_train, y_train, best_w)
+    best_mistakes = calc_mistakes(X_train, y_train, w)
     iters = 0
     while iters < 100:
         i = np.random.randint(X_train.shape[0])

@@ -1,0 +1,187 @@
+Python 3.5.2 (default, Nov 23 2017, 16:37:01)
+Type "copyright", "credits" or "license" for more information.
+
+IPython 2.4.1 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: 10e4
+Out[1]: 100000.0
+
+In [2]: 10**4
+Out[2]: 10000
+
+In [3]: N=10000
+
+In [4]: dvc=50
+
+In [5]: delta=0.05
+
+In [6]: def mh(N):
+...:
+KeyboardInterrupt
+
+In [6]: def mh(N, delta=delta):
+...:     return (2*N)**delta
+KeyboardInterrupt
+
+In [6]: def mh(N, dvc=dvc):
+...:     return N ** dvc
+...:
+
+In [7]: mh(2N)
+File "<ipython-input-7-fcefe6ae4812>", line 1
+mh(2N)
+^
+SyntaxError: invalid syntax
+
+
+In [8]: N=10000
+
+In [9]: mh(2*N)
+Out[9]: 112589990684262400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+In [10]: sqrt(3)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-10-9a7e86ce5220> in <module>()
+----> 1 sqrt(3)
+
+NameError: name 'sqrt' is not defined
+
+In [11]: from math import sqrt
+
+In [12]: sqrt(8/N*
+KeyboardInterrupt
+
+In [12]: ln
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-12-56659691edff> in <module>()
+----> 1 ln
+
+NameError: name 'ln' is not defined
+
+In [13]: from math import ln
+---------------------------------------------------------------------------
+ImportError                               Traceback (most recent call last)
+<ipython-input-13-963eccef279c> in <module>()
+----> 1 from math import ln
+
+ImportError: cannot import name 'ln'
+
+In [14]: from math import log
+
+In [15]: log(2)
+Out[15]: 0.6931471805599453
+
+In [16]: log(10)
+Out[16]: 2.302585092994046
+
+In [17]: log(2.7)
+Out[17]: 0.9932517730102834
+
+In [18]: sqrt( 8/N * log( 4*mh(2*N)/delta ) )
+Out[18]: 0.632174915200836
+
+In [19]: sqrt( 2 * log( 2*N*mh(N) ) / N ) + sqrt(2/N * log(1/delta)) + 1/N
+Out[19]: 0.3313087859616395
+
+In [20]: 2/N
+Out[20]: 0.0002
+
+In [21]: 1/N * log(6*mh(2*N) / delta)
+Out[21]: 0.04999618693695885
+
+In [22]: 0.223698
+Out[22]: 0.223698
+
+In [23]: 1 - 2/N
+Out[23]: 0.9998
+
+In [24]: 2/N
+Out[24]: 0.0002
+
+In [25]: 1/(2*N) * log( 4*mh(N**2) / delta)
+---------------------------------------------------------------------------
+OverflowError                             Traceback (most recent call last)
+<ipython-input-25-26476fc6a147> in <module>()
+----> 1 1/(2*N) * log( 4*mh(N**2) / delta)
+
+OverflowError: int too large to convert to float
+
+In [26]: 1/(2*N) * log( 4*mh(N**2) / delta)
+---------------------------------------------------------------------------
+OverflowError                             Traceback (most recent call last)
+<ipython-input-26-26476fc6a147> in <module>()
+----> 1 1/(2*N) * log( 4*mh(N**2) / delta)
+
+OverflowError: int too large to convert to float
+
+In [27]: 1/(2*N)
+Out[27]: 5e-05
+
+In [28]: log( 4*mh(N**2) / delta)
+---------------------------------------------------------------------------
+OverflowError                             Traceback (most recent call last)
+<ipython-input-28-ff1db49e2435> in <module>()
+----> 1 log( 4*mh(N**2) / delta)
+
+OverflowError: int too large to convert to float
+
+In [29]: 4*mh(N**2) / delta
+---------------------------------------------------------------------------
+OverflowError                             Traceback (most recent call last)
+<ipython-input-29-317f4f2800f1> in <module>()
+----> 1 4*mh(N**2) / delta
+
+OverflowError: int too large to convert to float
+
+In [30]: 4*mh(N**2)
+Out[30]: 40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+In [31]: delta
+Out[31]: 0.05
+
+In [32]: log(4*mh(N**2)*20)
+Out[32]: 925.4160638322921
+
+In [33]: 1/(2*N) * log( 4*mh(N**2) *20)
+Out[33]: 0.04627080319161461
+
+In [34]: 0.215028
+Out[34]: 0.215028
+
+In [35]: sqrt(16/N * log( 2*mh(N) / sqrt(delta) ))
+Out[35]: 0.8604259707062739
+
+In [36]: N=5
+
+In [37]: sqrt( 8/N * log( 4*mh(2*N)/delta ) )
+Out[37]: 13.828161484991483
+
+In [38]: sqrt( 2 * log( 2*N*mh(N) ) / N ) + sqrt(2/N * log(1/delta)) + 1/N
+Out[38]: 7.048776564183685
+
+In [39]: 1/N * log(6*mh(2*N) / delta)
+Out[39]: 23.983349278496867
+
+In [40]: 2/N
+Out[40]: 0.4
+
+In [41]: 5.10136
+Out[41]: 5.10136
+
+In [42]: 1/(2*N) * log( 4*mh(N**2) / delta)
+Out[42]: 16.532581787808393
+
+In [43]: 2/N
+Out[43]: 0.4
+
+In [44]: 5.59313
+Out[44]: 5.59313
+
+In [45]: sqrt(16/N * log( 2*mh(N) / sqrt(delta) ))
+Out[45]: 16.264111061012045

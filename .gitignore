@@ -1,3 +1,12 @@
+# Xelatex
+*.aux
+*.log
+*.fls
+*.synctex.gz
+
+# latexmk
+*.fdb_latexmk
+
 # Vim
 .*.un~
 

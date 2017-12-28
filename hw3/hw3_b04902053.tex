@@ -28,11 +28,11 @@
 
 \begin{document}
 \maketitle
-\section{}
+\section{} %1
 
 TODO: insert screenshot here.
 
-\section{}
+\section{} %2
 
 First, we prove ${H}^{2} = H$ :
 \[
@@ -54,11 +54,11 @@ Now we can prove that ${(I-H)}^{2} = (I-H)$ :
 	\end{aligned}
 \]
 
-\section{}
+\section{} %3
 
 TODO: 看不懂題目在寫什麼？QQ
 
-\section{}
+\section{} % 4
 
 \[
 	\hat{{E}_2}(\Delta u,\Delta v)
@@ -94,16 +94,61 @@ We can combine the two equations to only one equation by one vector.
 	\end{aligned}
 \]
 
-\section{}
+\section{} % 5
 
-\section{}
+\[
+		\max_{h} \prod_{n=1}^{N} h_{y}\left(x_{n}\right) 
+		= \max_{w} \prod_{n=1}^{N}
+			\frac{\exp({w}_{y_{n}}^{T}x_{n})}{\sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n})}
+\]
+\[
+	\begin{aligned}
+		& \max_{w} \ln \prod_{n=1}^{N}
+			\frac{\exp({w}_{y_{n}}^{T}x_{n})}{\sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n})} \\
+		&= \max_{w} \sum_{n=1}^{N} \ln
+			\frac{\exp({w}_{y_{n}}^{T}x_{n})}{\sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n})} \\
+		&= \max_{w} \sum_{n=1}^{N} \left( \ln( \exp({w}_{y_{n}}^{T}x_{n}) ) -
+			\ln\sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n}) \right) \\
+		&= \min_{w} \sum_{n=1}^{N} \left( \ln\sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n}) -
+			{w}_{y_{n}}^{T}x_{n} \right) \\
+	\end{aligned}
+\]
+So, 
+\[
+	E_{in} = \frac{1}{N} \sum_{n=1}^{N} \left( \ln \sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n}) -
+		{w}_{y_{n}}^{T}x_{n} \right) \\
+\]
 
-\section{}
+\section{} % 6
+
+\[
+	\begin{aligned}
+		& \pdv{\left(\sum_{n=1}^{N} \left( \ln\sum_{k=1}^{K}
+			\exp({w}_{k}^{T} x_{n})\right)\right)}{w_{i}} \\
+		&= \sum_{n=1}^{N} \left( \frac{\exp({w}_{i}^{T} x_{n})}
+			{\sum_{k=1}^{K} \exp({w}_{k}^{T} x_{n})}x_{n} \right) \\
+		&= \sum_{n=1}^{N} \left( h_{i}(x_{n}) x_{n} \right) \\
+	\end{aligned}
+\]
+Therefore, 
+\[
+	\begin{aligned}
+		\pdv{E_{in}}{w_{i}}
+			&= \pdv{\left(\frac{1}{N} \sum_{n=1}^{N} \left( \ln \sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n}) -
+			{w}_{y_{n}}^{T}x_{n} \right) \right)}{w_{i}} \\
+		&= \frac{1}{N} \sum_{n=1}^{N} \left( \left( h_{i}(x_{n}) x_{n} \right) -
+			[[y_{n}=i]] x_{n} \right) \\
+		&= \frac{1}{N} \sum_{n=1}^{N} \left( \left( \left( h_{i}(x_{n}) \right) -
+			[[y_{n}=i]] \right) x_{n} \right) \\
+	\end{aligned}
+\]
+
+\section{} % 7
 
 \begin{figure}[h!]
-  \includegraphics[width=\linewidth]{code/q7.png}
-  \caption{Histogram of ${E}_{out}$}
-  \label{fig:q7}
+	\includegraphics[width=\linewidth]{code/q7.png}
+	\caption{Histogram of ${E}_{out}$}
+	\label{fig:q7}
 \end{figure}
 
 Figure \ref{fig:q7} shows the histogram of ${E}_{out}$.

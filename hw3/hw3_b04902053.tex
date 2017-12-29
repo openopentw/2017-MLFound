@@ -28,33 +28,36 @@
 
 \begin{document}
 \maketitle
-\section{} %1
+\section{} % 1
 
-TODO: insert screenshot here.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\linewidth]{code/q1.png}
+\end{figure}
 
-\section{} %2
+\section{} % 2
 
-First, we prove ${H}^{2} = H$ :
+Claim: ${H}^{2} = H$ \\
+Proof:
 \[
 	\begin{aligned}
 		{H}^{2} &= {(X {({X}^{T}X)}^{-1} {X}^{T})} ^ {2} \\
 				&= (X {({X}^{T}X)}^{-1} {X}^{T}) (X {({X}^{T}X)}^{-1} {X}^{T}) \\
 				&= X {({X}^{T}X)}^{-1} [ ({X}^{T} X) {({X}^{T}X)}^{-1} ] {X}^{T} \\
 				&= X {({X}^{T}X)}^{-1} {X}^{T} \\
-				&= H
+				&= H \\
 	\end{aligned}
 \]
-
-Now we can prove that ${(I-H)}^{2} = (I-H)$ :
+With the claim above, we can prove that:
 \[
 	\begin{aligned}
 		{(I-H)}^{2} &= {I}^{2} - 2IH + {H}^{2} \\
 					&= I - 2H + H \\
-					&= I - H
+					&= I - H \\
 	\end{aligned}
 \]
 
-\section{} %3
+\section{} % 3
 
 TODO: 看不懂題目在寫什麼？QQ
 
@@ -65,7 +68,7 @@ TODO: 看不懂題目在寫什麼？QQ
 		= E(u, v) + \nabla E(u, v) \cdot (\Delta u, \Delta v)
 		+ \frac{1}{2} {(\Delta u, \Delta v)}^{T} {\nabla}^{2}E(u, v) (\Delta u, \Delta v)
 \]
-Let
+Set the partial differences of $\hat{{E}_2}(\Delta u,\Delta v)$ be $0$, we have :
 \[
 	\left\{
 		\begin{aligned}
@@ -77,6 +80,7 @@ Let
 		\end{aligned}
 	\right.
 \]
+Simplify the equations :
 \[
 	\left\{
 		\begin{aligned}
@@ -85,7 +89,7 @@ Let
 		\end{aligned}
 	\right.
 \]
-We can combine the two equations to only one equation by one vector.
+Now combine the two equations to one equation by vector $(u, v)$ :
 \[
 	\begin{aligned}
 		0 &= \nabla E(u, v) + {\nabla}^{2} E(u, v) \cdot (\Delta u, \Delta v) \\
@@ -93,6 +97,7 @@ We can combine the two equations to only one equation by one vector.
 		(\Delta u, \Delta v) &= - {\left({\nabla}^{2} E(u, v)\right)}^{-1} \nabla E(u, v)
 	\end{aligned}
 \]
+Q.E.D.
 
 \section{} % 5
 
@@ -101,6 +106,7 @@ We can combine the two equations to only one equation by one vector.
 		= \max_{w} \prod_{n=1}^{N}
 			\frac{\exp({w}_{y_{n}}^{T}x_{n})}{\sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n})}
 \]
+Take natural log on the it :
 \[
 	\begin{aligned}
 		& \max_{w} \ln \prod_{n=1}^{N}
@@ -113,7 +119,7 @@ We can combine the two equations to only one equation by one vector.
 			{w}_{y_{n}}^{T}x_{n} \right) \\
 	\end{aligned}
 \]
-So, 
+Therefore the $E_{in}$ is :
 \[
 	E_{in} = \frac{1}{N} \sum_{n=1}^{N} \left( \ln \sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n}) -
 		{w}_{y_{n}}^{T}x_{n} \right) \\
@@ -121,6 +127,7 @@ So,
 
 \section{} % 6
 
+First we compute :
 \[
 	\begin{aligned}
 		& \pdv{\left(\sum_{n=1}^{N} \left( \ln\sum_{k=1}^{K}
@@ -130,7 +137,7 @@ So,
 		&= \sum_{n=1}^{N} \left( h_{i}(x_{n}) x_{n} \right) \\
 	\end{aligned}
 \]
-Therefore, 
+Therefore the answer is :
 \[
 	\begin{aligned}
 		\pdv{E_{in}}{w_{i}}
@@ -146,11 +153,17 @@ Therefore,
 \section{} % 7
 
 \begin{figure}[h!]
+	\centering
 	\includegraphics[width=\linewidth]{code/q7.png}
 	\caption{Histogram of ${E}_{out}$}
 	\label{fig:q7}
 \end{figure}
 
 Figure \ref{fig:q7} shows the histogram of ${E}_{out}$.
+
+
+\section{} % 8
+
+\section{} % 9
 
 \end{document}

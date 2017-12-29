@@ -54,9 +54,8 @@ for seed in range(N):
 # print(eouts.mean(0))
 
 # plot histogram
-plt.hist(eouts)
-# plt.title('Histogram of Eout')
+plt.rcParams['font.family'] = 'serif'
+plt.hist(eouts, weights=np.zeros_like(eouts) + 1. / len(eouts)) # weights: set frequency
 plt.xlabel('Eout')
-plt.ylabel('number of Eout')
-# plt.show()
+plt.ylabel('frequency of Eout')
 plt.savefig('q7.png')

@@ -24,7 +24,7 @@ def update_w(w, x, y, eta):
 # train & test #
 ################
 
-def train(x, y, T=2000, eta=0.0001):
+def train(x, y, T=2000, eta=0.001):
     x = preprocess(x)
     w = np.zeros(x.shape[1])
     for t in range(T):

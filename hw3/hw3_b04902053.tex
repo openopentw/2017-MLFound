@@ -2,6 +2,7 @@
 \usepackage[a4paper,margin=0.8in,footskip=0.25in]{geometry}
 
 \usepackage{graphicx}
+\usepackage{subcaption}
 
 \usepackage{mathtools}
 \usepackage{physics}
@@ -29,14 +30,11 @@
 \begin{document}
 \maketitle
 \section{} % 1
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\linewidth]{code/q1.png}
 \end{figure}
-
 \section{} % 2
-
 Claim: ${H}^{2} = H$ \\
 Proof:
 \[
@@ -56,13 +54,9 @@ With the claim above, we can prove that:
 					&= I - H \\
 	\end{aligned}
 \]
-
 \section{} % 3
-
 TODO: 看不懂題目在寫什麼？QQ
-
 \section{} % 4
-
 \[
 	\hat{{E}_2}(\Delta u,\Delta v)
 		= E(u, v) + \nabla E(u, v) \cdot (\Delta u, \Delta v)
@@ -98,9 +92,7 @@ Now combine the two equations to one equation by vector $(u, v)$ :
 	\end{aligned}
 \]
 Q.E.D.
-
 \section{} % 5
-
 \[
 		\max_{h} \prod_{n=1}^{N} h_{y}\left(x_{n}\right) 
 		= \max_{w} \prod_{n=1}^{N}
@@ -124,9 +116,7 @@ Therefore the $E_{in}$ is :
 	E_{in} = \frac{1}{N} \sum_{n=1}^{N} \left( \ln \sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n}) -
 		{w}_{y_{n}}^{T}x_{n} \right) \\
 \]
-
 \section{} % 6
-
 First we compute :
 \[
 	\begin{aligned}
@@ -149,21 +139,49 @@ Therefore the answer is :
 			[[y_{n}=i]] \right) x_{n} \right) \\
 	\end{aligned}
 \]
-
 \section{} % 7
-
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=\linewidth]{code/q7.png}
+	\includegraphics[width=0.8\linewidth]{code/q7.png}
 	\caption{Histogram of ${E}_{out}$}
 	\label{fig:q7}
 \end{figure}
-
 Figure \ref{fig:q7} shows the histogram of ${E}_{out}$.
-
-
 \section{} % 8
-
+\begin{figure}[h]%
+	\begin{subfigure}[h]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{code/q8_001.png}
+		\caption{$lr=0.001$}
+	\end{subfigure}
+	\hfill\vrule\hfill
+	\begin{subfigure}[h]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{code/q8_01.png}
+		\caption{$lr=0.01$}
+	\end{subfigure}%
+	\caption{Comparison between $GD$ and $SGD$ in $E_{in}$.}
+	\label{fig:q8}
+\end{figure}
+My findings:
+\begin{itemize}
+	\item $GD$ 和 $SGD$ 的差異： \\
+	我發現 $GD$ 的 $E_{in}$ 很快就會穩定保持相同，或是穩定下降，而不會上下亂跳；相較之下， $SGD$ 的 $E_{in}$ 則是很容易上下浮動。 \\
+	我想這是因為 $SGD$ 一次只會取一筆資料來計算 gradient ，如果這一筆資料有 noise 的話，算出來的 gradient 很容易會被 noise 影響；相較之下， $GD$ 一次會用所有資料來計算 gradient ，依照 Hoeffding's Inequality 可以知道：取愈多資料，平均的 noise 有越高的機率會愈小，所以才會有這樣的結果。
+	\item $lr = 0.001$ 和 $lr = 0.01$ 的差異： \\
+	我發現 $lr = 0.001$ 的時候，除了剛開始 $E_{in}$ 不穩定亂跳以外，
+\end{itemize}
 \section{} % 9
-
+\begin{figure}[h]%
+	\begin{subfigure}[h]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{code/q9_001.png}
+		\caption{$lr=0.001$}
+	\end{subfigure}
+	\hfill\vrule\hfill
+	\begin{subfigure}[h]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{code/q9_01.png}
+		\caption{$lr=0.01$}
+	\end{subfigure}%
+	\caption{Comparison between GD and SGD in $E_{out}$.}
+	\label{fig:q9}
+	% 結果和 $E_{out}$ 很像，所以如果可以把最小值紀錄下來，結果應該會更好
+\end{figure}
 \end{document}

@@ -35,7 +35,7 @@
 	\includegraphics[width=\linewidth]{code/q1.png}
 \end{figure}
 \section{} % 2
-Claim: ${H}^{2} = H$ \\
+Claim: ${H}^{2} = H$. \\
 Proof:
 \[
 	\begin{aligned}
@@ -98,7 +98,7 @@ Q.E.D.
 		= \max_{w} \prod_{n=1}^{N}
 			\frac{\exp({w}_{y_{n}}^{T}x_{n})}{\sum_{k=1}^{K} \exp({w}_{k}^{T}x_{n})}
 \]
-Take natural log on the it :
+Take natural log on it :
 \[
 	\begin{aligned}
 		& \max_{w} \ln \prod_{n=1}^{N}
@@ -117,7 +117,7 @@ Therefore the $E_{in}$ is :
 		{w}_{y_{n}}^{T}x_{n} \right) \\
 \]
 \section{} % 6
-First we compute :
+First compute :
 \[
 	\begin{aligned}
 		& \pdv{\left(\sum_{n=1}^{N} \left( \ln\sum_{k=1}^{K}
@@ -161,14 +161,17 @@ Figure \ref{fig:q7} shows the histogram of ${E}_{out}$.
 	\caption{Comparison between $GD$ and $SGD$ in $E_{in}$.}
 	\label{fig:q8}
 \end{figure}
-My findings:
-\begin{itemize}
-	\item $GD$ 和 $SGD$ 的差異： \\
-	我發現 $GD$ 的 $E_{in}$ 很快就會穩定保持相同，或是穩定下降，而不會上下亂跳；相較之下， $SGD$ 的 $E_{in}$ 則是很容易上下浮動。 \\
-	我想這是因為 $SGD$ 一次只會取一筆資料來計算 gradient ，如果這一筆資料有 noise 的話，算出來的 gradient 很容易會被 noise 影響；相較之下， $GD$ 一次會用所有資料來計算 gradient ，依照 Hoeffding's Inequality 可以知道：取愈多資料，平均的 noise 有越高的機率會愈小，所以才會有這樣的結果。
+從上面兩張圖中，我發現有以下三點現象：
+\begin{enumerate}
+	\item GD 和 SGD 的差異： \\
+	我發現 GD 的 $E_{in}$ 很快就會穩定不變，或是穩定下降，而不會上下亂跳；相較之下， SGD 的 $E_{in}$ 則是很容易上下浮動。 \\
+	我想這是因為 SGD 一次只會取一筆資料來計算 gradient ，如果這一筆資料有 noise 的話，算出來的 gradient 很容易會被這個 noise 影響；相較之下， GD 一次會用所有資料來計算 gradient ，所以算出來的結果一定會讓所有 training data 的 $E_{in}$ 變小或幾乎不變。
 	\item $lr = 0.001$ 和 $lr = 0.01$ 的差異： \\
-	我發現 $lr = 0.001$ 的時候，除了剛開始 $E_{in}$ 不穩定亂跳以外，
-\end{itemize}
+	我發現無論是 GD 或 SGD ， $lr = 0.001$ 的時候， $E_{in}$ 除了一開始上下亂跳以外，接下來就幾乎固定在 $0.46$ 左右了；而 $lr = 0.01$ 的時候， $E_{in}$ 會一直下降到 $0.21$ 。 \\
+	我想這是因為 $0.001$ 的 learning rate 太小了，下降的速度太慢，甚至很容易卡在局部極值出不去；而 $0.01$ 的 learning rate 則是比較洽當的值，所以 $E_{in}$ 才能一直下降。
+	\item 我發現到最後 GD 和 SGD 收斂到很接近的值。\\
+	我想這是因為以期望值而言， SGD 算出來的 gradient 和 GD 的 gradient 會是一樣的，但是 SGD 會有 noise ，所以一開始 GD 和 SGD 的結果會差很多。但是夠多的 iteration 之後， SGD 的 $E_{in}$ 會因為跑過所有的點很多次，而且有相同的 learning rate，所以有比較高的機率可以到相同的極值。
+\end{enumerate}
 \section{} % 9
 \begin{figure}[h]%
 	\begin{subfigure}[h]{0.45\textwidth}
@@ -182,6 +185,20 @@ My findings:
 	\end{subfigure}%
 	\caption{Comparison between GD and SGD in $E_{out}$.}
 	\label{fig:q9}
-	% 結果和 $E_{out}$ 很像，所以如果可以把最小值紀錄下來，結果應該會更好
+從上面兩張圖中，我發現有以下 5 點現象：
+\begin{enumerate}
+	\item $E_{out}$ 的結果和 $E_{in}$ 的結果很像。\\
+	我想這是因為 $E_{out}$ 和 $E_{in}$ 的 noise 沒有太多，而且取的資料量又都相對夠多，所以 $E_{out}$ 的結果才會和 $E_{in}$ 很像。
+	\item GD 和 SGD 的差異： \\
+	我發現 GD 的 $E_{in}$ 很快就會穩定不變，或是穩定下降，而不會上下亂跳；相較之下， SGD 的 $E_{in}$ 則是很容易上下浮動。 \\
+	我想這個原因跟 $E_{in}$ 的這個現象的原因是有關係的：因為 SGD 一次只會取一筆資料來計算 gradient ，如果這一筆資料有 noise 的話，算出來的 gradient 很容易會被這個 noise 影響，所以 $E_{out}$ 的值也會被影響；相較之下， GD 一次會用所有資料來計算 gradient ，所以算出來的結果比較穩定，不會只受單一資料的 noise 影響，所以 $E_{out}$ 比較不會上下大幅變動。
+	\item $lr = 0.001$ 和 $lr = 0.01$ 的差異： \\
+	我發現無論是 GD 或 SGD ， $lr = 0.001$ 的時候， $E_{in}$ 除了一開始上下亂跳以外，接下來就幾乎固定在 $0.47$ 左右了；而 $lr = 0.01$ 的時候， $E_{in}$ 會一直下降到 $0.22$ 。 \\
+	我想這個原因跟 $E_{in}$ 的這個現象的原因是一樣的：因為 $0.001$ 的 learning rate 太小了，下降的速度太慢，甚至很容易卡在局部極值出不去；而 $0.01$ 的 learning rate 則是比較洽當的值，所以 $E_{out}$ 才能一直下降。
+	\item 我發現到最後 GD 和 SGD 收斂到很接近的值。\\
+	我想這個原因跟 $E_{in}$ 的這個現象的原因是一樣的：因為以期望值而言， SGD 算出來的 gradient 和 GD 的 gradient 會是一樣的，但是 SGD 會有 noise ，所以一開始 GD 和 SGD 的結果會差很多。但是夠多的 iteration 之後， SGD 的 $E_{in}$ 會因為跑過所有的點很多次，而且有相同的 learning rate，所以有比較高的機率可以到相同的極值。
+	\item 另外，從上一現象可以發現：在這次的 data 裡面，其實可以只使用速度較快、運算資源不用太多的 SGD 來做 training ，也可以得到和 GD 相近的效果。\\
+	而如果給定相同的時間用 GD 和 SGD 來做的話， SGD 可能可以比 GD 更早下降到極值，或是 SGD 可能會有比 GD 更好的效果。
+\end{enumerate}
 \end{figure}
 \end{document}
